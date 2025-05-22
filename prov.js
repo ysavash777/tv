@@ -888,24 +888,35 @@ $(document).ready(function () {
             }
             $('#mainIframe').attr('src', url);
             console.log('Final iframe URL:', url);
-            cleanAdsCycle();
         }
 
         const $optionsList = $('#optionsList');
 
+        // Generar botones dinámicamente (excepto para "multicam")
         if (currentChannel !== 'multicam') {
             optionKeys.forEach((key) => {
                 if (key.startsWith('repro')) {
                     let buttonText = `Opción ${key.replace('repro', '')}`;
 
+                    // Personalización para "gran-hermano"
                     if (currentChannel === 'gran-hermano') {
                         const num = key.replace('repro', '');
                         switch (num) {
-                            case '1': buttonText = 'Cámara 24hs'; break;
-                            case '2': buttonText = 'Cámara #1'; break;
-                            case '3': buttonText = 'Cámara #2'; break;
-                            case '4': buttonText = 'Cámara #3'; break;
-                            case '5': buttonText = 'Multicam'; break;
+                            case '1':
+                                buttonText = 'Cámara 24hs';
+                                break;
+                            case '2':
+                                buttonText = 'Cámara #1';
+                                break;
+                            case '3':
+                                buttonText = 'Cámara #2';
+                                break;
+                            case '4':
+                                buttonText = 'Cámara #3';
+                                break;
+                            case '5':
+                                buttonText = 'Multicam';
+                                break;
                         }
                     }
 
@@ -916,20 +927,15 @@ $(document).ready(function () {
                     $optionsList.append(li);
                 }
             });
-        }
 
-        if (currentChannel !== 'multicam' && optionKeys.filter(k => k.startsWith('repro')).length === 1) {
-            $('#singleOptionMessage').show();
+            // Mostrar mensaje si solo hay una opción
+            if (optionKeys.filter(k => k.startsWith('repro')).length === 1) {
+                $('#singleOptionMessage').show();
+            }
         }
     } else {
         console.error('Canal no encontrado:', currentChannel);
     }
-
-    // Observador permanente de cambios en el DOM
-    const observer = new MutationObserver(() => {
-        removeAds();
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
 });
 
 function selectOption(optionId) {
@@ -937,32 +943,7 @@ function selectOption(optionId) {
 
     if (channels[currentChannel] && channels[currentChannel][optionId]) {
         $('#mainIframe').attr('src', channels[currentChannel][optionId]);
-        cleanAdsCycle();
     } else {
         console.error('Opción o canal no encontrado:', currentChannel, optionId);
     }
-}
-
-function removeAds() {
-    $('iframe').each(function () {
-        const style = $(this).attr('style') || '';
-        if (style.includes('position: absolute') && style.includes('visibility: hidden')) {
-            $(this).remove();
-        }
-    });
-
-    $('#dontfoid').remove();
-    $('script#aclib').remove();
-    $('script[src*="lib7.js"]').remove();
-
-    console.log('Anuncios eliminados');
-}
-
-function cleanAdsCycle(durationSeconds = 10) {
-    let elapsed = 0;
-    const interval = setInterval(() => {
-        removeAds();
-        elapsed++;
-        if (elapsed >= durationSeconds) clearInterval(interval);
-    }, 1000);
 }
