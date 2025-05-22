@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: #f3f4fb;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    background-color: #fff;
+    height: 70px;
+    margin-bottom: 13px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+#content {
+    width: 50%;
+    display: flex;
+    margin: 10px auto;
+}
+
+.menu-container {
+    margin-top: 10px;
+}
+
+.menu-container,
+.menu,
+#optionsList {
+    width: 100%;
+}
+
+#optionsList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.menu {
+    display: block;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.menu li {
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    height: 60px;
+    align-items: center;
+}
+
+.stream {
+    border-radius: 5px;
+    width: 50vw;
+    height: calc(50vw * 9 / 16);
+}
+
+/* Selector */
+.channel-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 13px;
+    margin-bottom: 13px;
+}
+
+.btn-left, .btn-right {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-left svg,
+.btn-right svg {
+    width: 20px;
+    stroke: #8b8d9a;
+}
+
+.channel-list {
+    display: flex;
+    gap: 13px;
+}
+
+.channel {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.channel img {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    object-fit: contain;
+}
