@@ -30,7 +30,7 @@ body {
 }
 
 #content {
-    width: 50%;
+    width: 90%;
     display: flex;
     margin: 10px auto;
 }
@@ -76,8 +76,8 @@ body {
 
 .stream {
     border-radius: 5px;
-    width: 50vw;
-    height: calc(50vw * 9 / 16);
+    width: 90vw;
+    height: calc(90vw * 9 / 16);
 }
 
 /* Selector */
